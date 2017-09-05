@@ -2,17 +2,16 @@
   "name": "wsocket",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.4.5",
-    "ws": "0.4.x"
-  },
-  "engines": {
-    "node": "0.10.x"
-  },
   "scripts": {
     "start": "node server.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "bufferutil": "1.2.1",
+    "express": "4.13.4",
+    "utf-8-validate": "1.2.1",
+    "ws": "1.1.0"
   }
 }
