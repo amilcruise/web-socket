@@ -25,6 +25,10 @@ var state = {
   "user": "amil"
 };
 
+var superUser = {
+  'name': 'amil'
+}
+
 const server = express()
   .use((req, res) => res.sendFile(INDEX) )
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
@@ -42,6 +46,9 @@ wss.on('connection', function connection(ws) {
   // or ws.upgradeReq.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.on('message', function incoming(message) {
     const payload = JSON.parse(message);
+
+    if (superUser.name !== payload.user) return;
+
     state = payload;
     wss.clients.forEach(function (client) {
       if (client !== ws) client.send(message);
