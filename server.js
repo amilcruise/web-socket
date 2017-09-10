@@ -23,7 +23,7 @@ var state = {
   },
   "type": "REMOTE_STATE",
   "user": "amil",
-  "superUser": "amil"
+  "superUser": "amil",
 };
 
 const server = express()
