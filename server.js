@@ -55,6 +55,10 @@ wss.on('connection', function connection(ws) {
     });
   });
 
+  ws.on('superUser', function (user) {
+    superUser = user
+  });
+
   ws.on('close', function close() {
     console.log('socket disconnected');
   });
