@@ -23,8 +23,11 @@ var state = {
   },
   "type": "REMOTE_STATE",
   "user": "amil",
-  "superUser": "amil",
 };
+
+var superUser = {
+  'name': 'amil'
+}
 
 const server = express()
   .use((req, res) => res.sendFile(INDEX) )
@@ -44,7 +47,11 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     const payload = JSON.parse(message);
 
-    if (payload.superUser !== payload.user) return;
+    if (payload.superUser) {
+      superUser.name = payload.superUser;
+    }
+
+    if (superUser.name !== payload.user) return;
 
     state = payload;
     wss.clients.forEach(function (client) {
