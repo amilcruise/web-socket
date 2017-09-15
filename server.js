@@ -50,9 +50,8 @@ wss.on('connection', function connection(ws) {
     if (payload.superUser) {
       superUser.name = payload.superUser;
     }
-
     if (superUser.name !== payload.user) return;
-
+    payload.whoControls = superUser.name;
     state = payload;
     wss.clients.forEach(function (client) {
       if (client !== ws) client.send(message);
