@@ -23,6 +23,7 @@ var state = {
   },
   "type": "REMOTE_STATE",
   "user": "amil",
+  "whoControls": "",
 };
 
 var superUser = {
@@ -51,6 +52,7 @@ wss.on('connection', function connection(ws) {
       superUser.name = payload.superUser;
     }
     if (superUser.name !== payload.user) return;
+    
     payload.whoControls = superUser.name;
     state = payload;
     wss.clients.forEach(function (client) {
