@@ -6,7 +6,7 @@
       var ws = new WebSocket(HOST);
       var el = document.getElementById('server-time');
       ws.onmessage = function (event) {
-        el.innerHTML = 'state: ' + event.data + '<br> superUser:' + superUser;
+        el.innerHTML = 'state: ' + event.data;
       };
     </script>
   </body>
