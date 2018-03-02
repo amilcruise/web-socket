@@ -4,12 +4,13 @@ const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
 var url = require('url');
+const request = require('request');
 
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+//const low = require('lowdb')
+//const FileSync = require('lowdb/adapters/FileSync')
 
-const adapter = new FileSync('db.json')
-const db = low(adapter)
+//const adapter = new FileSync('db.json')
+//const db = low(adapter)
 
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
@@ -25,7 +26,6 @@ const INDEX = path.join(__dirname, 'index.html');
 // // if (superUser)
 // // db.set('user.super', 'amil')
 // // .write();
-
 
 var state = {
   "state": {
@@ -44,6 +44,12 @@ var state = {
   "user": "amil",
   "whoControls": "",
 };
+
+request('http://demo3538373.mockable.io/currentslide', { json: true }, (err, res, body) => {
+  if (err) { return console.log(err); }
+  console.log(body);
+  state.route.slide = body.currentSlide;
+});
 
 const server = express()
   .use((req, res) => res.sendFile(INDEX) )
