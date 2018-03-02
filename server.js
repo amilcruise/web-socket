@@ -48,7 +48,7 @@ var state = {
 request('http://demo3538373.mockable.io/currentslide', { json: true }, (err, res, body) => {
   if (err) { return console.log(err); }
   console.log(body);
-  state.route.slide = body.currentSlide;
+  state.state.route.slide = body.currentSlide;
 });
 
 const server = express()
