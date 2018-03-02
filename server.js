@@ -45,10 +45,12 @@ var state = {
   "whoControls": "",
 };
 
-request('http://demo3538373.mockable.io/currentslide', { json: true }, (err, res, body) => {
+request('https://portfolioadmin.amilcruise.com/api/currentslide/1', { json: true }, (err, res, body) => {
   if (err) { return console.log(err); }
   console.log(body);
-  state.state.route.slide = body.currentSlide;
+  if (body) {
+    state.state.route.slide = body.slideno || 0;
+  }
 });
 
 const server = express()
@@ -85,6 +87,13 @@ wss.on('connection', function connection(ws) {
     state = payload;
     wss.clients.forEach(function (client) {
       if (client !== ws) client.send(message);
+    });
+
+    request.post({url:'https://portfolioadmin.amilcruise.com/api/currentslide/update', 
+                  form: {groupId:1, slideNumber: payload.state.route.slide || 0}}, 
+                  (err,httpResponse,body) => {
+                    console.log(body);
+
     });
   });
 
