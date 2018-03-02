@@ -89,12 +89,12 @@ wss.on('connection', function connection(ws) {
       if (client !== ws) client.send(message);
     });
 
-    request.post({url:'https://portfolioadmin.amilcruise.com/api/currentslide/update', 
-                  form: {groupId:1, slideNumber: payload.state.route.slide || 0}}, 
-                  (err,httpResponse,body) => {
-                    console.log(body);
+    // request.post({url:'https://portfolioadmin.amilcruise.com/api/currentslide/update', 
+    //               form: {groupId:1, slideNumber: payload.state.route.slide || 0}}, 
+    //               (err,httpResponse,body) => {
+    //                 console.log(body);
 
-    });
+    // });
   });
 
   ws.on('close', function close() {
